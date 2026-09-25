@@ -1,0 +1,64 @@
+@import "tailwindcss";
+
+@theme {
+  --font-pixel: "Press Start 2P", "Courier New", monospace;
+}
+
+html, body, #root {
+  height: 100%;
+  margin: 0;
+  background: #12131f;
+  overscroll-behavior: none;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+}
+
+body {
+  touch-action: none;
+  overflow: hidden;
+}
+
+button {
+  font-family: inherit;
+}
+
+/* subtle CRT scanlines for a cohesive retro feel */
+.crt {
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 0.11) 0px,
+    rgba(0, 0, 0, 0.11) 1px,
+    transparent 1px,
+    transparent 3px
+  );
+}
+
+.pixel-shadow {
+  text-shadow: 0.12em 0.12em 0 #12131f;
+}
+
+@keyframes pop {
+  from { transform: scale(0.6); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+@keyframes blink {
+  50% { opacity: 0.15; }
+}
+@keyframes floaty {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-0.35em); }
+}
+
+@keyframes bonk {
+  0% { transform: translateY(0) rotate(0); }
+  15% { transform: translateY(-0.9em) rotate(-18deg) scale(1.35); }
+  35% { transform: translateY(0.3em) rotate(12deg); }
+  55% { transform: translateY(-0.35em) rotate(-6deg); }
+  75% { transform: translateY(0.1em) rotate(2deg); }
+  100% { transform: translateY(0) rotate(0); }
+}
+.anim-bonk { animation: bonk 0.9s cubic-bezier(0.2, 1.2, 0.4, 1) both; }
+
+.anim-pop { animation: pop 0.25s cubic-bezier(0.2, 1.4, 0.4, 1) both; }
+.anim-blink { animation: blink 1s steps(1) infinite; }
+.anim-float { animation: floaty 1.6s ease-in-out infinite; }
